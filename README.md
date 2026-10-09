@@ -31,6 +31,15 @@
 $ pnpm install
 ```
 
+## Public image uploads
+
+Configure `URL_PUBLIC` with the public backend origin and `UPLOADS_DIR` with the shared directory
+where the admin backend stores uploads. The public backend serves that directory under `/upload/`
+and returns absolute public-backend URLs for uploaded images. Locally, `.env.example` points to
+`../back-end-admin/public/upload`; in production, both backends must share or mount the same upload
+storage path. TinyMCE inline images stored as base64 in the news body remain part of the database
+content and do not use this static upload route.
+
 ## Compile and run the project
 
 ```bash

@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { BaseCrudService } from '../../common/database/base-crud.service';
+import { publicAssetUrl } from '../../common/public-asset-url';
 import { EventRegistration } from '../event-registrations/entities/event-registration.entity';
 import { Event } from './entities/event.entity';
 
@@ -54,7 +55,7 @@ export class EventsService extends BaseCrudService<Event> {
       provincia: event.province,
       cupo: event.capacity,
       inscriptos: registrationsByEvent.get(Number(event.id)) ?? 0,
-      imagen: event.imageUrl,
+      imagen: publicAssetUrl(event.imageUrl),
       descripcion: event.description,
       organizaLink: event.organizerUrl,
     }));

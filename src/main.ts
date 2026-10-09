@@ -2,14 +2,21 @@ import { Logger, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import type { Express } from 'express';
+import type { NestExpressApplication } from '@nestjs/platform-express';
 import morgan from 'morgan';
+import { resolve } from 'node:path';
 import { DataSource } from 'typeorm';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
   const logger = new Logger('Bootstrap');
   const requestLogger = new Logger('HTTP');
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  const uploadsDirectory = process.env.UPLOADS_DIR;
+  if (!uploadsDirectory) {
+    throw new Error('Missing required environment variable: UPLOADS_DIR');
+  }
+  app.useStaticAssets(resolve(process.cwd(), uploadsDirectory), { prefix: '/upload/' });
   const server = app.getHttpAdapter().getInstance() as Express;
   server.disable('x-powered-by');
   server.get('/', (_req, res) => {

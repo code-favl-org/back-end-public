@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { BaseCrudService } from '../../common/database/base-crud.service';
+import { publicAssetUrl } from '../../common/public-asset-url';
 import { NewsArticle } from './entities/news-article.entity';
 
 @Injectable()
@@ -22,7 +23,7 @@ export class NewsArticlesService extends BaseCrudService<NewsArticle> {
       destacadaEnHero: Boolean(article.isFeaturedInHero),
       tags: article.tags ?? [],
       resumen: article.summary,
-      imagen: article.imageUrl,
+      imagen: publicAssetUrl(article.imageUrl),
       fecha: article.publishedDate,
     }));
   }
@@ -54,7 +55,7 @@ export class NewsArticlesService extends BaseCrudService<NewsArticle> {
       tags: article.tags ?? [],
       resumen: article.summary,
       contenido: article.content,
-      imagen: article.imageUrl,
+      imagen: publicAssetUrl(article.imageUrl),
       fecha: article.publishedDate,
       categoria: article.category,
     };
