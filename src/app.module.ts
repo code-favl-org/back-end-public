@@ -1,6 +1,5 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { AuthModule } from './modules/auth/auth.module';
 import { ClubsModule } from './modules/clubs/clubs.module';
 import { DatabaseModule } from './modules/database/database.module';
 import { EventRegistrationsModule } from './modules/event-registrations/event-registrations.module';
@@ -19,7 +18,6 @@ import { UsersModule } from './modules/users/users.module';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true, envFilePath: '.env' }),
-    AuthModule,
     ClubsModule,
     DatabaseModule,
     EventRegistrationsModule,
@@ -36,4 +34,4 @@ import { UsersModule } from './modules/users/users.module';
     UsersModule,
   ],
 })
-export class AppModule { }
+export class AppModule {}

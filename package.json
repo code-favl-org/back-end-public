@@ -13,8 +13,6 @@
     "start:dev": "nodemon --watch src --watch .env --ext ts,json,env --exec ts-node -r tsconfig-paths/register src/main.ts",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
-    "db:migration:run": "typeorm-ts-node-commonjs migration:run -d src/modules/database/data-source.ts",
-    "db:migration:revert": "typeorm-ts-node-commonjs migration:revert -d src/modules/database/data-source.ts",
     "db:user:create": "ts-node -r tsconfig-paths/register scripts/create-demo-user.ts",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",

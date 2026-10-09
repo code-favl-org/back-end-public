@@ -7,7 +7,7 @@ import { ClubsController } from './clubs.controller';
 const persistence = process.env.NODE_ENV === 'test' ? [] : [TypeOrmModule.forFeature([Club])];
 const providers =
 	process.env.NODE_ENV === 'test'
-		? [{ provide: ClubsService, useValue: { findPublic: async () => [] } }]
+		? [{ provide: ClubsService, useValue: { findPublic: () => Promise.resolve([]) } }]
 		: [ClubsService];
 
 @Module({ imports: persistence, controllers: [ClubsController], providers, exports: [ClubsService] })

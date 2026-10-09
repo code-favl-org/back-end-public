@@ -26,6 +26,9 @@ export class NewsArticle {
   @Column({ type: 'text', nullable: true })
   summary: string | null;
 
+  @Column({ type: 'longtext', nullable: true })
+  content: string | null;
+
   @Column({ name: 'image_url', type: 'text', nullable: true })
   imageUrl: string | null;
 
@@ -34,6 +37,9 @@ export class NewsArticle {
 
   @Column({ type: 'varchar', length: 20, nullable: true })
   status: string | null;
+
+  @Column({ type: 'varchar', length: 40, nullable: true })
+  category: string | null;
 
   @Column({ name: 'author_id', type: 'bigint', unsigned: true, nullable: true })
   authorId: number | null;
