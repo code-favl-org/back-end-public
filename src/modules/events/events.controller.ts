@@ -1,15 +1,11 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, Get, Param, Query } from '@nestjs/common';
 import { ApiOperation, ApiQuery, ApiTags } from '@nestjs/swagger';
-import { BaseCrudController } from '../../common/controllers/base-crud.controller';
-import { Event } from './entities/event.entity';
 import { EventsService } from './events.service';
 
 @ApiTags('Eventos')
 @Controller('novedades/eventos')
-export class EventsController extends BaseCrudController<Event> {
-  constructor(private readonly events: EventsService) {
-    super(events);
-  }
+export class EventsController {
+  constructor(private readonly events: EventsService) {}
 
   @Get()
   @ApiOperation({ summary: 'Listar eventos con filtros opcionales' })
@@ -20,5 +16,11 @@ export class EventsController extends BaseCrudController<Event> {
     @Query('estado') estado?: string,
   ) {
     return this.events.findPublic({ modalidad, estado });
+  }
+
+  @Get(':identifier')
+  @ApiOperation({ summary: 'Obtener evento público por slug o ID' })
+  findPublicByIdentifier(@Param('identifier') identifier: string) {
+    return this.events.findPublicByIdentifier(identifier);
   }
 }

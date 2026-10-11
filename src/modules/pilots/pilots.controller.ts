@@ -1,16 +1,6 @@
 import { BadRequestException, Controller, Get, Param } from '@nestjs/common';
 import { ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
-import { BaseCrudController } from '../../common/controllers/base-crud.controller';
-import { Pilot } from './entities/pilot.entity';
 import { PilotsService } from './pilots.service';
-
-@ApiTags('Pilotos')
-@Controller('pilots')
-export class PilotsController extends BaseCrudController<Pilot> {
-  constructor(service: PilotsService) {
-    super(service);
-  }
-}
 
 @ApiTags('Verificación de piloto')
 @Controller('verificarPiloto')

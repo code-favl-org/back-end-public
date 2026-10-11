@@ -1,15 +1,11 @@
 import { Controller, Get, Query } from '@nestjs/common';
 import { ApiOperation, ApiQuery, ApiTags } from '@nestjs/swagger';
-import { BaseCrudController } from '../../common/controllers/base-crud.controller';
-import { GalleryImage } from './entities/gallery-image.entity';
 import { GalleryImagesService } from './gallery-images.service';
 
 @ApiTags('Galería')
 @Controller('galeria')
-export class GalleryImagesController extends BaseCrudController<GalleryImage> {
-  constructor(private readonly gallery: GalleryImagesService) {
-    super(gallery);
-  }
+export class GalleryImagesController {
+  constructor(private readonly gallery: GalleryImagesService) {}
 
   @Get()
   @ApiOperation({ summary: 'Listar imágenes de galería' })
