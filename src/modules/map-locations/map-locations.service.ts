@@ -106,9 +106,9 @@ export class MapLocationsService extends BaseCrudService<MapLocation> {
     if (!Array.isArray(data)) {
       throw new Error('La API externa devolvió un formato inesperado.');
     }
-    this.logger.log(
-      `Respuesta recibida de CND: ${JSON.stringify(data, null, 2)}`,
-    );
+    // this.logger.log(
+    //   `Respuesta recibida de CND: ${JSON.stringify(data, null, 2)}`,
+    // );
     const items = data as unknown[];
     return items.map((item: unknown, index) => {
       if (
