@@ -1,6 +1,7 @@
 import { existsSync } from 'node:fs';
 import { DataSource } from 'typeorm';
 import { User } from '../users/entities/user.entity';
+import { UserProfile } from '../users/entities/user-profile.entity';
 
 if (existsSync('.env')) {
   process.loadEnvFile('.env');
@@ -21,6 +22,6 @@ export default new DataSource({
   username: required('DB_USERNAME'),
   password: required('DB_PASSWORD'),
   database: required('DB_NAME'),
-  entities: [User],
+  entities: [User, UserProfile],
   synchronize: false,
 });
